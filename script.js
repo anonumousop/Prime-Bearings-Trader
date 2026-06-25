@@ -58,15 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const observerOptions = {
         root: null,
-        threshold: 0.1, // Element reveals when 10% visible
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0.05, // Lowered for immediate trigger when entering viewport
+        rootMargin: "0px 0px -20px 0px"
     };
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Reveal animation runs once smoothly
+                observer.unobserve(entry.target); 
             }
         });
     }, observerOptions);
