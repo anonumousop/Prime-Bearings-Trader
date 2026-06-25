@@ -17,8 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderBearings(items) {
         if (!grid) return;
+        
+        // Render items out cleanly
         grid.innerHTML = items.map(item => `
-            <div class="product-card" data-category="${item.category}">
+            <div class="product-card fade-in-up" data-category="${item.category}">
                 <div class="product-info">
                     <span class="product-cat">${item.category}</span>
                     <h3 class="product-title">${item.title}</h3>
@@ -35,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `).join('');
     }
 
-    // Filter Logic
+    // Filter Logic with fluid entrance animation
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
@@ -58,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const observerOptions = {
         root: null,
-        threshold: 0.05, // Lowered for immediate trigger when entering viewport
-        rootMargin: "0px 0px -20px 0px"
+        threshold: 0.05, // Instantly fires smooth interaction as soon as content hits container frame
+        rootMargin: "0px 0px -40px 0px"
     };
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
