@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const grid = document.getElementById('productGrid');
     const filterBtns = document.querySelectorAll('.filter-btn');
 
-    // Premium expanded bearing size specifications data array
     const bearingProducts = [
         { id: 1, title: "Standard Ball Bearing 608", category: "industrial", series: "Bore: 8mm | OD: 22mm | Width: 7mm", material: "Premium High Carbon Steel", rpm: "Ceiling Fans & Power Tools" },
         { id: 2, title: "Standard Ball Bearing 6201", category: "industrial", series: "Bore: 12mm | OD: 32mm | Width: 10mm", material: "Heavy Duty Shielded Metal", rpm: "Motorcycle Hubs & Water Pumps" },
@@ -17,10 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderBearings(items) {
         if (!grid) return;
-        
-        // Render items out cleanly
         grid.innerHTML = items.map(item => `
-            <div class="product-card fade-in-up" data-category="${item.category}">
+            <div class="product-card fade-in-up">
                 <div class="product-info">
                     <span class="product-cat">${item.category}</span>
                     <h3 class="product-title">${item.title}</h3>
@@ -37,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `).join('');
     }
 
-    // Filter Logic with fluid entrance animation
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
@@ -55,15 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderBearings(bearingProducts);
 
-    // ─── SMOOTH SCROLL MOTION / REVEAL ON SWIPE INTERSECTION OBSERVER ───
+    // Optimized observer adjustments for lower mobile breakpoints
     const revealElements = document.querySelectorAll('.reveal');
-    
-    const observerOptions = {
-        root: null,
-        threshold: 0.05, // Instantly fires smooth interaction as soon as content hits container frame
-        rootMargin: "0px 0px -40px 0px"
-    };
-
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -71,9 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 observer.unobserve(entry.target); 
             }
         });
-    }, observerOptions);
+    }, { root: null, threshold: 0.02, rootMargin: "0px 0px -10px 0px" });
 
-    revealElements.forEach(element => {
-        revealObserver.observe(element);
-    });
+    revealElements.forEach(element => revealObserver.observe(element));
 });
