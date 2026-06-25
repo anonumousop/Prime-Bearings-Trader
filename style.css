@@ -409,14 +409,28 @@ header {
     text-align: center;
     background: #25D366;
     color: white;
-    padding: 0.65rem;
-    border-radius: 4px;
+    padding: 0.7rem;
+    border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
-    transition: var(--smooth-motion);
+    box-shadow: 0 4px 6px rgba(37, 211, 102, 0.15); /* Soft green glow base */
+    transition: var(--smooth-motion); /* Keeps it butter smooth */
 }
 
+/* ─── DYNAMIC HOVER POP EFFECT ─── */
+.enquiry-btn:hover {
+    background: #20ba5a; /* Slightly deeper WhatsApp green */
+    transform: translateY(-4px) scale(1.03); /* Lifts up and expands slightly */
+    box-shadow: 0 8px 16px rgba(37, 211, 102, 0.35); /* Mega pop shadow glow */
+    color: white;
+}
+
+/* ─── MECHANICAL CLICK EFFECT ─── */
+.enquiry-btn:active {
+    transform: translateY(-1px) scale(0.98); /* Snaps down physically when tapped/clicked */
+    box-shadow: 0 2px 4px rgba(37, 211, 102, 0.2);
+}
 /* REVEAL SETUPS */
 .reveal {
     position: relative;
